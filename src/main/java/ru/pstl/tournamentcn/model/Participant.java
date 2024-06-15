@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -31,4 +32,8 @@ public class Participant implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Tournament tournament;
+
+    private Integer cntIn;
+    private Integer place;
+    private BigDecimal payout;
 }

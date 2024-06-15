@@ -3,6 +3,7 @@ package ru.pstl.tournamentcn.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.pstl.tournamentcn.model.InfoParticipantRequest;
 import ru.pstl.tournamentcn.model.Participant;
 import ru.pstl.tournamentcn.model.Player;
 import ru.pstl.tournamentcn.model.Tournament;
@@ -36,11 +37,11 @@ public class TournamentcnController {
     }
 
     @PostMapping("/tournaments/{tournamentId}/participant")
-    public ResponseEntity<Participant> createOrUpdateParticipant (@PathVariable("tournamentId")long tournamentId, @RequestBody Player player){
-        return PARTICIPANT_SERVICE.createOrUpdateParticipant(tournamentId, player);
+    public ResponseEntity<Participant> createOrUpdateParticipant (@PathVariable("tournamentId")long tournamentId, @RequestBody InfoParticipantRequest infoParticipantRequest){
+        return PARTICIPANT_SERVICE.createOrUpdateParticipant(tournamentId, infoParticipantRequest);
     }
     @PostMapping("/tournaments/{tournamentId}/participant-list")
-    public ResponseEntity<List<Participant>> createOrUpdateParticipantList (@PathVariable("tournamentId")long tournamentId, @RequestBody List<Player> playerList){
-        return PARTICIPANT_SERVICE.createOrUpdateParticipantList(tournamentId, playerList);
+    public ResponseEntity<List<Participant>> createOrUpdateParticipantList (@PathVariable("tournamentId")long tournamentId, @RequestBody List<InfoParticipantRequest> infoParticipantRequestList){
+        return PARTICIPANT_SERVICE.createOrUpdateParticipantList(tournamentId, infoParticipantRequestList);
     }
 }
