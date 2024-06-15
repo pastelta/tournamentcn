@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,7 +17,7 @@ import java.sql.Time;
 @NoArgsConstructor
 public class Tournament {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tournament_generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="tournament_name")
     private String tournamentName;
@@ -28,4 +29,6 @@ public class Tournament {
     private Integer statusId;
     @Column(name="buying_in")
     private BigDecimal buyingIn;
+    @OneToMany(mappedBy = "tournament")
+    List<Participant> participantList;
 }

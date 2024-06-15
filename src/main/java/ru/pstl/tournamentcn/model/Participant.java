@@ -8,19 +8,24 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.io.Serializable;
+
 @Data
 @Entity
 @Table(name="participants")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Participant {
+public class Participant implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "participant_generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "player_id")
-    private Long playerId;
-    @Column(name="cnt_in")
-    private Integer cntIn;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "player_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Player player;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tournament_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

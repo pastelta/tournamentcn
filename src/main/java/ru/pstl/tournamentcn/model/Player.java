@@ -1,5 +1,4 @@
 package ru.pstl.tournamentcn.model;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "player_name")
     private String playerName;
